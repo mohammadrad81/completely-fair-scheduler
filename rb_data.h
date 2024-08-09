@@ -12,6 +12,7 @@ typedef struct {
 } mydata;
 
 mydata *makedata(int key);
+mydata *makedata_with_object(int key, void* object);
 int compare_func(const void *d1, const void *d2);
 void destroy_func(void *d);
 void print_func(void *d);
