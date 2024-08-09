@@ -15,7 +15,14 @@ mydata *makedata(int key)
 	p = (mydata *) malloc(sizeof(mydata));
 	if (p != NULL)
 		p->key = key;
+		p->object = NULL;
 
+	return p;
+}
+
+mydata *makedata_with_object(int key, void* object){
+	mydata *p = makedata(key);
+	p->object = object;
 	return p;
 }
 

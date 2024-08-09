@@ -7,6 +7,7 @@
 #define _RB_DATA_HEADER
 
 typedef struct {
+	void* object;
 	int key;
 } mydata;
 
