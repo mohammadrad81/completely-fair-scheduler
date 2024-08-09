@@ -1,6 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 #include "proc.h"
 
-void create_process(int id, int vruntime, int residual_duration){
+process *create_process(int id, int vruntime, int residual_duration){
     process *p;
 
     p = (process *) malloc(sizeof(process));
@@ -13,9 +16,9 @@ void create_process(int id, int vruntime, int residual_duration){
 }
 
 void run_process(process p){
-    printf("process %d is running...", p->id);
+    printf("process %d is running...", p.id);
 }
 
 void terminate_process(process p){
-    print("process %d terminated.", p->id);
+    printf("process %d terminated.", p.id);
 }
