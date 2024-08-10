@@ -9,7 +9,9 @@
 
 void fill_process_array(process* process_array[PROCESS_COUNT]){
     for(int i = 0; i < PROCESS_COUNT; i++){
-        process_array[i] = create_process(2000 + i, 100 + i, 3);
+        process_array[i] = create_process(2000 + i, // process id
+                                          100 + i,  // current vruntime
+                                          3);       // residual execution duration of the process
     }
 }
 
@@ -53,6 +55,7 @@ int main(){
     int current_tick = 0;
     while((node = RB_MINIMAL(rbt))){
         printf("current_tick: %d\n", current_tick);
+        current_tick ++;
         current_proc = process_of_node(node);
         run_process_for_one_tick(current_proc);
         rb_delete(rbt, node, 0);
