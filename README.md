@@ -1,5 +1,12 @@
 
-# A Red-black Tree Implementation In C
+# Completely Fair Scheduler using Red-black Tree Implementation In C
+
+## Completely Fair Scheduler
+CFS stands for “Completely Fair Scheduler,” and is the new “desktop” process scheduler implemented by Ingo Molnar and merged in Linux 2.6.23. It is the replacement for the previous vanilla scheduler’s SCHED_OTHER interactivity code.
+80% of CFS’s design can be summed up in a single sentence: CFS basically models an “ideal, precise multi-tasking CPU” on real hardware.
+“Ideal multi-tasking CPU” is a (non-existent :-)) CPU that has 100% physical power and which can run each task at precise equal speed, in parallel, each at 1/nr_running speed. For example: if there are 2 tasks running, then it runs each at 50% physical power --- i.e., actually in parallel.
+
+## Implementation of Red-black Tree
 
 There are several choices when implementing red-black trees:
 - store parent reference or not
@@ -23,9 +30,7 @@ Files
 * rb_test.sh - unit test shell script
 * README.md - implementation note
 
-If you have suggestions, corrections, or comments, please get in touch with [xieqing](https://github.com/xieqing).
-
-## DEFINITION
+## DEFINITION of Red-black Tree
 
 A red-black tree is a binary search tree where each node has a color attribute, the value of which is either red or black. Essentially, it is just a convenient way to express a 2-3-4 binary search tree where the color indicates whether the node is part of a 3-node or a 4-node. 2-3-4 trees and red-black trees are equivalent data structures, red-black trees are simpler to implement, so tend to be used instead.
 
@@ -40,42 +45,7 @@ Red-black properties:
 4. Both children of each red node are black.
 5. Every path from a given node to any of its descendant NIL nodes contains the same number of black nodes.
 
-## WHY 2-3-4 TREE?
-
-We could only keep binary search tree almostly balanced instead of completely balanced (consider AVL tree as an example). We need at least 1-3 nodes (2-4 children) to keep tree completely balanced.
-
-```
-    Binary search tree
-
-             1
-            / \
-           /   \
-          4     9
-         / \   / \
-        3   5 6  nil
-    
-    2-3-4 tree
-                        (1)
-                       /   \
-                      /     \
-           (3   4   5)      (6   9)
-           /  |   |  \      /  |  \
-        nil nil nil  nil nil  nil  nil
-
-    2-children: (1)
-    3-children: (6 9)
-    4-children: (3 4 5)
-```
-
-Why not 2-5 tree, 2-6 tree...?
-
-2-4 tree will guarantee O(log n) using 2, 3 or 4 subtrees per node, while implementation could be trivial (red-black tree). 2-N (N>4) tree still guarantee O(logn), while implementation could be much complicated.
-
 ## INSERTION
-
-**Insertion into a 2-3-4 tree**
-
-split, and insert grandparent node into parent cluster
 
 **Insertion into a red-black tree**
 
@@ -88,11 +58,6 @@ Insert as in simple binary search tree
 - 4-children cluster (parent node is RED) splits into 2-children cluster and 3-children cluster: split, and insert grandparent node into parent cluster
 
 ## DELETION
-
-**Deletion from 2-3-4 tree**
-
-- transfer, and done
-- fuse, and done or delete parent node from parent cluster
 
 **Deletion from red-black tree**
 
@@ -110,8 +75,7 @@ Delete as in simple binary search tree
 ## References
 
 1. [https://en.wikipedia.org/wiki/Red-black_tree](https://en.wikipedia.org/wiki/Red-black_tree)
-2. [https://en.wikipedia.org/wiki/2-3-4_tree](https://en.wikipedia.org/wiki/2-3-4_tree)
-3. [https://www.cs.usfca.edu/~galles/visualization/RedBlack.html](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+2. [https://www.cs.usfca.edu/~galles/visualization/RedBlack.html](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
 
 ## License
 
